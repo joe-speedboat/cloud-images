@@ -9,7 +9,9 @@ echo openssh-server >> example/packages
 echo "
 PW=BBfree
 echo -e $PW\\n$PW | passwd root
+sed -i 's/#PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 rc-update add sshd default
+
 echo ttyS0 >> /etc/securetty
 sed -i 's/#ttyS0/ttyS0/' /etc/inittab
 sed -i 's/\(APPEND .*\)/\1 console=ttyS0,115200/' /boot/extlinux.conf
