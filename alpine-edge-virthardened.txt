@@ -1,4 +1,11 @@
 
 git clone https://github.com/alpinelinux/alpine-make-vm-image.git
 cd alpine-make-vm-image
+
+echo "
+echo ttyS0 >> /etc/securetty
+sed -i 's/#ttyS0/ttyS0/' /etc/inittab
+" >> ./example/configure.sh
+
 ./alpine-make-vm-image --image-format qcow2 --image-size 50G -b edge --packages "$(cat example/packages)" --script-chroot         alpine-edge-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
+
