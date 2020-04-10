@@ -8,7 +8,7 @@ cd alpine-make-vm-image
 echo openssh-server >> example/packages
 echo "
 PW=BBfree
-echo -e $PW\n$PW | passwd root
+echo -e $PW\\n$PW | passwd root
 rc-update add sshd default
 echo ttyS0 >> /etc/securetty
 sed -i 's/#ttyS0/ttyS0/' /etc/inittab
