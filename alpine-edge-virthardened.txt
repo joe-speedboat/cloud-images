@@ -7,7 +7,7 @@ cd alpine-make-vm-image
 
 echo openssh-server >> example/packages
 echo "
-PW=BBfree
+PW=BBfree123
 echo -e \$PW\\n\$PW | passwd root
 sed -i 's/#PermitRootLogin .*/PermitRootLogin yes/' /etc/ssh/sshd_config
 rc-update add sshd default
