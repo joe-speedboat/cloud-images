@@ -2,10 +2,14 @@
 git clone https://github.com/alpinelinux/alpine-make-vm-image.git
 cd alpine-make-vm-image
 
+echo openssh-server >> example/packages
 echo "
+rc-update add sshd default
 echo ttyS0 >> /etc/securetty
 sed -i 's/#ttyS0/ttyS0/' /etc/inittab
+sed -i 's/\(APPEND .*\)/\1 console=ttyS0,115200/' /boot/extlinux.conf
 " >> ./example/configure.sh
 
 ./alpine-make-vm-image --image-format qcow2 --image-size 50G -b edge --packages "$(cat example/packages)" --script-chroot         alpine-edge-virthardened-$(date +%Y-%m-%d).qcow2 -- ./example/configure.sh
+gzip alpine-edge-virthardened-$(date +%Y-%m-%d).qcow2
 
