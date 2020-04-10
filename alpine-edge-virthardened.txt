@@ -1,4 +1,7 @@
 
+
+apk update
+apk add libvirt qemu-img git
 git clone https://github.com/alpinelinux/alpine-make-vm-image.git
 cd alpine-make-vm-image
 
